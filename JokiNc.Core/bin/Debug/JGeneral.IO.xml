@@ -1,0 +1,418 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JGeneral.IO</name>
+    </assembly>
+    <members>
+        <member name="P:JGeneral.IO.Database.DbQueue.Current">
+            <summary>
+            Gets the currently executing <see cref="T:System.MulticastDelegate"/>.
+            </summary>
+        </member>
+        <member name="M:JGeneral.IO.Database.DbQueue.#ctor(System.Int32)">
+            <summary>
+            Creates a new queue.
+            </summary>
+            <param name="length">The length of the queue.</param>
+        </member>
+        <member name="M:JGeneral.IO.Database.DbQueue.#ctor">
+            <summary>
+            Creates a new queue.
+            </summary>
+        </member>
+        <member name="M:JGeneral.IO.Database.DbQueue.QueueUp(System.Action,System.String)">
+            <summary>
+            Queues up a new <see cref="T:System.Action"/> to the internal list.
+            </summary>
+            <param name="method">The <see cref="T:System.Action"/> to queue.</param>
+            <param name="methodName">The private method name to assign to the anonymous <see cref="T:System.Action"/>.</param>
+            <exception cref="T:System.NotImplementedException">Throws if the provided <see cref="T:System.Action"/> is null.</exception>
+        </member>
+        <member name="M:JGeneral.IO.Database.DbQueue.QueueUp``1(System.Func{``0},System.String)">
+            <summary>
+            Queues up a new <see cref="T:System.Func`1"/> to the internal list.
+            </summary>
+            <param name="work">The <see cref="T:System.Func`1"/> to queue.</param>
+            <param name="methodName">The private method name to assign to the anonymous <see cref="T:System.Func`1"/>.</param>
+            <exception cref="T:System.NotImplementedException">Throws if the provided <see cref="T:System.Func`1"/> is null.</exception>
+        </member>
+        <member name="M:JGeneral.IO.Database.JObject`1.op_Implicit(`0)~JGeneral.IO.Database.JObject{`0}">
+            <summary>
+            Converts an arbitrary <see cref="T:System.Object"/> to a <see cref="T:JGeneral.IO.Database.JObject`1"/>.
+            </summary>
+            <param name="obj">The object to convert.</param>
+            <returns>A new <see cref="T:JGeneral.IO.Database.JObject`1"/>.</returns>
+        </member>
+        <member name="M:JGeneral.IO.Database.JObject`1.op_Implicit(JGeneral.IO.Database.JObject{`0})~`0">
+            <summary>
+            Converts an <see cref="T:JGeneral.IO.Database.JObject`1"/> to a <see cref="!:T"/> <see cref="T:System.Object"/>.
+            </summary>
+            <param name="obj">The <see cref="T:JGeneral.IO.Database.JObject`1"/> to convert.</param>
+            <returns>An instance of the T stored inside the <see cref="T:JGeneral.IO.Database.JObject`1"/>.</returns>
+        </member>
+        <member name="M:JGeneral.IO.Database.JObject`1.op_Implicit(JGeneral.IO.Database.JObject{`0})~JGeneral.IO.Database.JObject{System.Object}">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:JGeneral.IO.Database.JObjectHelper.Create``1(``0,System.String)">
+            <summary>
+            Encapsulates the instance in a JObject if it is not already of type JObject.
+            </summary>
+            <param name="instance"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="P:JGeneral.IO.Database.JWorker.Suitable">
+            <summary>
+            Checks if the worker is suitable for usage at the current state.
+            </summary>
+        </member>
+        <member name="P:JGeneral.IO.Database.JWorker.CurrentQueueLength">
+            <summary>
+            Returns the current length of the queue according to the <see cref="P:JGeneral.IO.Database.JWorker.Queue"/>.
+            </summary>
+        </member>
+        <member name="M:JGeneral.IO.Database.JWorker.#ctor(System.Int32)">
+            <summary>
+            Creates a new instance of a <see cref="T:JGeneral.IO.Database.JWorker"/> along with it's queue.
+            </summary>
+            <param name="maxQueue">The maximum number of simultaneous operations on this worker at any given moment.</param>
+        </member>
+        <member name="M:JGeneral.IO.Database.JWorker.Assign(System.Action,System.String)">
+            <summary>
+            Assigns an <see cref="T:System.Action"/> to the <see cref="T:JGeneral.IO.Database.JWorker"/> with it's private name for logging purposes.
+            </summary>
+            <param name="action">The <see cref="T:System.Action"/> to be executed.</param>
+            <param name="methodName">A private name of the anonymous method used for logging purposes only.</param>
+        </member>
+        <member name="M:JGeneral.IO.Database.JWorker.Assign``1(System.Func{``0},System.String)">
+            <summary>
+            Assigns an <see cref="T:System.Func`1"/> to the <see cref="T:JGeneral.IO.Database.JWorker"/> with it's private name for logging purposes.
+            </summary>
+            <param name="work">The <see cref="T:System.Func`1"/> to be executed.</param>
+            <param name="methodName">A private name of the anonymous method used for logging purposes only.</param>
+        </member>
+        <member name="P:JGeneral.IO.Database.MemoryDatabase.DbWorkers">
+            <summary>
+            All currently active <see cref="T:JGeneral.IO.Database.JWorker"/>s.
+            </summary>
+        </member>
+        <member name="P:JGeneral.IO.Database.MemoryDatabase.PastEvents">
+            <summary>
+            Past events loaded from <see cref="T:JGeneral.IO.Database.JWorker"/>s.
+            </summary>
+        </member>
+        <member name="M:JGeneral.IO.Database.MemoryDatabase.#ctor(System.Int32)">
+            <summary>
+            Creates a new instance of a <see cref="T:JGeneral.IO.Database.MemoryDatabase"/>.
+            This database stores it's data in <see cref="P:JGeneral.IO.Database.MemoryDatabase.MemoryStorage"/>.
+            </summary>
+            <param name="workerThreads"></param>
+        </member>
+        <member name="M:JGeneral.IO.Database.MemoryDatabase.AssignWork(System.Action,System.String)">
+            <summary>
+            Assigns the work <see cref="T:System.Action"/> to a <see cref="T:JGeneral.IO.Database.JWorker"/>.
+            </summary>
+            <param name="work">The <see cref="T:System.Action"/> to invoke on the <see cref="T:JGeneral.IO.Database.JWorker"/>'s background thread.</param>
+            <param name="workId">The anonymous method Id. -------------> ( USED PURELY FOR LOGGING )</param>
+        </member>
+        <member name="M:JGeneral.IO.Database.MemoryDatabase.AssignWork(System.Action)">
+            <summary>
+            Assigns the work <see cref="T:System.Action"/> to a <see cref="T:JGeneral.IO.Database.JWorker"/>.
+            </summary>
+            <param name="work">The <see cref="T:System.Action"/> to invoke on the <see cref="T:JGeneral.IO.Database.JWorker"/>'s background thread.</param>
+        </member>
+        <member name="M:JGeneral.IO.Database.MemoryDatabase.AssignWork``1(System.Func{``0})">
+            <summary>
+            Assigns the work [<see cref="T:System.Func`1"/>] to a <see cref="T:JGeneral.IO.Database.JWorker"/>.
+            </summary>
+            <param name="work">The <see cref="T:System.Func`1"/> to invoke on the <see cref="T:JGeneral.IO.Database.JWorker"/>'s background thread.</param>
+            <typeparam name="T">The type of the returned instance.</typeparam>
+        </member>
+        <member name="M:JGeneral.IO.Database.MemoryDatabase.Store``1(JGeneral.IO.Database.JObject{``0})">
+            <summary>
+            Stores a specified instance of <see cref="T:JGeneral.IO.Database.JObject`1"/> with it's id.
+            </summary>
+            <typeparam name="T">The type of the instance.</typeparam>
+        </member>
+        <member name="M:JGeneral.IO.Database.MemoryDatabase.Store``1(``0,System.String)">
+            <summary>
+            Stores the specified instance with it's id.
+            </summary>
+            <typeparam name="T">The type of the instance.</typeparam>
+        </member>
+        <member name="M:JGeneral.IO.Database.MemoryDatabase.LoadAsync``1(System.String)">
+            <summary>
+            Loads the item of type <see cref="!:T"/> with a qualifier Id from the <see cref="T:JGeneral.IO.Database.DbMemoryStorage"/>, asynchronously.
+            </summary>
+            <param name="id">The id of the item.</param>
+            <typeparam name="T">The type of the item.</typeparam>
+            <returns>The item.</returns>
+        </member>
+        <member name="M:JGeneral.IO.Database.MemoryDatabase.Load``1(System.String)">
+            <summary>
+            Loads the item of type <see cref="!:T"/> with a qualifier Id from the <see cref="T:JGeneral.IO.Database.DbMemoryStorage"/>, synchronously.
+            </summary>
+            <param name="id">The id of the item.</param>
+            <typeparam name="T">The type of the item.</typeparam>
+            <returns>The item.</returns>
+        </member>
+        <member name="M:JGeneral.IO.FileAccessModifier.TakeOwnershipAs(System.String,System.Security.Principal.IdentityReference)">
+            <summary>
+            Sets the ownership of the desired file to the <paramref name="iRef"/>
+            </summary>
+            <param name="file">The file path</param>
+            <param name="iRef">User identity ref, if you're trying to take ownership as your account, leave it at null.</param>
+        </member>
+        <member name="M:JGeneral.IO.Net.BasicRemoteClient.Register">
+            <returns>Whether the registration was successful.</returns>
+        </member>
+        <member name="M:JGeneral.IO.Net.BasicRemoteServer.HttpPut(System.Net.HttpListenerContext,System.Int64)">
+            <summary>
+            Put is assigned to the Consume command.
+            </summary>
+        </member>
+        <member name="M:JGeneral.IO.Net.BasicRemoteServer.HttpPost(System.Net.HttpListenerContext,System.Int64)">
+            <summary>
+            Post request is assigned to the Register method on client side.
+            </summary>
+        </member>
+        <member name="T:JGeneral.IO.Net.LogSenderServer">
+            <summary>
+            Broadcasts all it's received data ( from <see cref="T:JGeneral.IO.Net.BasicRemoteServer"/>'s requests ) to all available named pipes created with the Conveyor.CreateJConveyor() method.
+            </summary>
+        </member>
+        <member name="M:JGeneral.IO.Net.LogSenderServer.#ctor">
+            <exception cref="T:JGeneral.IO.Net.NetExceptions.MissingConveyors">Throws when the executing assembly does not have the Assembly
+            JGeneral.Conveyor loaded.</exception>
+        </member>
+        <member name="M:JGeneral.IO.Net.V2.NetworkExtensions.WriteStringToOutput(System.String,System.Net.HttpListenerContext)">
+            <summary>
+            Writes all text to the output stream in an ASCII format.
+            </summary>
+            <returns>The number of bytes written to stream.</returns>
+        </member>
+        <member name="M:JGeneral.IO.Reflection.EventModifier`2.AddHandler(`1)">
+            <summary>
+            Adds an event handler to the event if it is public, otherwise throws.
+            </summary>
+        </member>
+        <member name="M:JGeneral.IO.Reflection.EventModifier`2.RemoveLastHandler">
+            <summary>
+            Removes the last event handler added by this class.
+            </summary>
+        </member>
+        <member name="M:JGeneral.IO.Reflection.EventModifier`1.AddHandler(`0)">
+            <summary>
+            Adds an event handler to the event if it is public, otherwise throws.
+            </summary>
+        </member>
+        <member name="M:JGeneral.IO.Reflection.EventModifier`1.RemoveLastHandler">
+            <summary>
+            Removes the last event handler added by this class.
+            </summary>
+        </member>
+        <member name="M:JGeneral.IO.Reflection.EventModifierHelper.CreateNonPublicStaticEventModifier``1(System.Type,System.String)">
+            <summary>
+            Creates a new <see cref="T:JGeneral.IO.Reflection.StaticEventModifier`1"/> for regular public events.
+            </summary>
+            <param name="t">The type containing the event.</param>
+            <param name="eventName">The name of the event.</param>
+            <typeparam name="THandlerType">The type of an event handler, ex. Action{T1}.</typeparam>
+            <returns>An instance of a <see cref="T:JGeneral.IO.Reflection.EventModifier`2"/>.</returns>
+        </member>
+        <member name="M:JGeneral.IO.Reflection.EventModifierHelper.CreatePublicStaticEventModifier``1(System.Type,System.String)">
+            <summary>
+            Creates a new <see cref="T:JGeneral.IO.Reflection.StaticEventModifier`1"/> for non-public events.
+            </summary>
+            <param name="eventName">The name of the event.</param>
+            <param name="t">The type containing the event.</param>
+            <typeparam name="THandlerType">The type of an event handler, ex. Action{T1}.</typeparam>
+            <returns>An instance of a <see cref="T:JGeneral.IO.Reflection.EventModifier`2"/>.</returns>
+        </member>
+        <member name="M:JGeneral.IO.Reflection.EventModifierHelper.CreateNonPublicEventModifier``2(``0,System.String)">
+            <summary>
+            Creates a new <see cref="T:JGeneral.IO.Reflection.EventModifier`2"/> for non-public events.
+            </summary>
+            <param name="containingTypeInstance">The instance to create the modifier on top of</param>
+            <param name="eventName">The name of the event.</param>
+            <typeparam name="T">The instance's type.</typeparam>
+            <typeparam name="THandlerType">The type of an event handler, ex. Action{T1}.</typeparam>
+            <returns>An instance of a <see cref="T:JGeneral.IO.Reflection.EventModifier`2"/>.</returns>
+        </member>
+        <member name="M:JGeneral.IO.Reflection.EventModifierHelper.CreatePublicEventModifier``2(``0,System.String)">
+            <summary>
+            Creates a new <see cref="T:JGeneral.IO.Reflection.EventModifier`2"/> for regular public events.
+            </summary>
+            <param name="containingTypeInstance">The instance to create the modifier on top of</param>
+            <param name="eventName">The name of the event.</param>
+            <typeparam name="T">The instance's type.</typeparam>
+            <typeparam name="THandlerType">The type of an event handler, ex. Action{T1}.</typeparam>
+            <returns>An instance of a <see cref="T:JGeneral.IO.Reflection.EventModifier`2"/>.</returns>
+        </member>
+        <member name="M:JGeneral.IO.Reflection.StaticEventModifier`1.AddHandler(`0)">
+            <summary>
+            Adds an event handler to the event if it is public, otherwise throws.
+            </summary>
+        </member>
+        <member name="M:JGeneral.IO.Reflection.StaticEventModifier`1.RemoveLastHandler">
+            <summary>
+            Removes the last event handler added by this class.
+            </summary>
+        </member>
+        <member name="M:JGeneral.IO.Reflection.Executor`2.Run(System.Object[])">
+            <summary>
+            Provides an efficient way to run a method reflection-wise.
+            Note that values might be boxed in the case that they are structs.
+            </summary>
+            <param name="arg">An argument array used to invoke the method with.</param>
+            <returns>The method result of type <typeparamref name="TReturn"/>.</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:JGeneral.IO.Reflection.Executor`2.Run``1(``0)" -->
+        <member name="M:JGeneral.IO.Reflection.Executor`2.Run``1(System.Object[])">
+            <summary>
+            Provides an efficient way to run a method reflection-wise with an augmented return type.
+            Note that values might be boxed in the case that they are structs.
+            </summary>
+            <param name="arg">An argument array used to invoke the method with.</param>
+            <typeparam name="TAltReturn">An alternate return type.</typeparam>
+            <returns>The method result of custom type <typeparamref name="TAltReturn"/>.</returns>
+        </member>
+        <member name="M:JGeneral.IO.Reflection.Executor`2.Run``2(``1)">
+            <summary>
+            Provides an efficient way to run a method reflection-wise with augmented return and parameter types.
+            Note that values might be boxed in the case that they are structs.
+            </summary>
+            <param name="arg">An argument of custom type TArg.</param>
+            <typeparam name="TAltReturn">An alternate return type.</typeparam>
+            <typeparam name="TArg">A custom type for the input parameters of the method.</typeparam>
+            <returns>The method result of custom type <typeparamref name="TAltReturn"/>.</returns>
+        </member>
+        <member name="M:JGeneral.IO.Reflection.Executor`1.Run(System.Object[])">
+            <summary>
+            Provides an efficient way to run a method reflection-wise.
+            Note that values might be boxed in the case that they are structs.
+            </summary>
+            <param name="arg">An argument array used to invoke the method with.</param>
+        </member>
+        <member name="M:JGeneral.IO.Reflection.Executor`1.Run``1(``0)">
+            <summary>
+            Provides an efficient way to run a method reflection-wise with an augmented parameter type.
+            Note that values might be boxed in the case that they are structs.
+            </summary>
+            <param name="arg">An argument of custom type TArg.</param>
+            <typeparam name="TArg">A custom type for the input parameters of the method.</typeparam>
+        </member>
+        <member name="M:JGeneral.IO.Reflection.Executor.Run(System.Object[])">
+            <summary>
+            Provides an efficient way to run a method reflection-wise.
+            Note that values might be boxed in the case that they are structs.
+            </summary>
+            <param name="arg">An argument array used to invoke the method with.</param>
+        </member>
+        <member name="M:JGeneral.IO.Reflection.Executor.Run``1(``0)">
+            <summary>
+            Provides an efficient way to run a method reflection-wise with an augmented parameter type.
+            Note that values might be boxed in the case that they are structs.
+            </summary>
+            <param name="arg">An argument of custom type TArg.</param>
+            <typeparam name="TArg">A custom type for the input parameters of the method.</typeparam>
+        </member>
+        <member name="M:JGeneral.IO.Reflection.StaticExecutor`1.Run(System.Object[])">
+            <summary>
+            Provides an efficient way to run a static method reflection-wise.
+            Note that values might be boxed in the case that they are structs.
+            </summary>
+            <param name="arg">An argument array used to invoke the method with.</param>
+        </member>
+        <member name="M:JGeneral.IO.Reflection.StaticExecutor`1.Run``1(``0)">
+            <summary>
+            Provides an efficient way to run a method reflection-wise with an augmented parameter type.
+            Note that values might be boxed in the case that they are structs.
+            </summary>
+            <param name="arg">An argument of custom type TArg.</param>
+            <typeparam name="TArg">A custom type for the input parameters of the method.</typeparam>
+        </member>
+        <member name="M:JGeneral.IO.Reflection.StaticExecutor.Run(System.Object[])">
+            <summary>
+            Provides an efficient way to run a static method reflection-wise.
+            Note that values might be boxed in the case that they are structs.
+            </summary>
+            <param name="arg">An argument array used to invoke the method with.</param>
+        </member>
+        <member name="M:JGeneral.IO.Reflection.StaticExecutor.Run``1(``0)">
+            <summary>
+            Provides an efficient way to run a method reflection-wise with an augmented parameter type.
+            Note that values might be boxed in the case that they are structs.
+            </summary>
+            <param name="arg">An argument of custom type TArg.</param>
+            <typeparam name="TArg">A custom type for the input parameters of the method.</typeparam>
+        </member>
+        <member name="T:JGeneral.IO.Reflection.V2.FieldModifier`2">
+            <summary>
+            Dynamically modifies fields with reflection with a minimal performance impact.
+            It is advised not to use this in combination with the struct data type because of boxing issues.
+            </summary>
+            <typeparam name="T">The Field's Type.</typeparam>
+            <typeparam name="TParent">The Parent's Type.</typeparam>
+        </member>
+        <member name="T:JGeneral.IO.Reflection.V2.PropertyModifier`2">
+            <summary>
+            Dynamically modifies properties with reflection with a minimal performance impact.
+            It is advised not to use this in combination with the struct data type because of boxing issues.
+            </summary>
+            <typeparam name="T">The Field's Type.</typeparam>
+            <typeparam name="TParent">The Parent's Type.</typeparam>
+        </member>
+        <member name="M:JGeneral.IO.Reflection.StaticModifier`2.Modify(`1)">
+            <param name="value">The new value of type TVariableInfoData</param>
+        </member>
+        <member name="M:JGeneral.IO.Reflection.StaticModifier`1.Modify(System.Object)">
+            <param name="value">The new value of type TVariableInfoData</param>
+        </member>
+        <member name="E:JGeneral.IO.Threading.SyncThread`1.OnTake">
+            <summary>
+            Represents an event that is called whenever a <see cref="T:JGeneral.IO.Threading.SyncThread`1"/> takes an item from the <see cref="T:System.Collections.Concurrent.BlockingCollection`1"/>.
+            The input string parameter represents the calling thread's id.
+            </summary>
+        </member>
+        <member name="F:JGeneral.IO.Threading.SyncThreadMode.Current">
+            <summary>
+            Represents the usage of the thread that was used to invoke the currently executing method.
+            </summary>
+        </member>
+        <member name="F:JGeneral.IO.Threading.SyncThreadMode.Main">
+            <summary>
+            Represents the usage of the main process's thread.
+            </summary>
+        </member>
+        <member name="M:JGeneral.IO.Threading.ThreadHelper.CreateDaemon(System.Action{System.Object})">
+            <summary>
+            Creates a new background thread which starts when the <see cref="T:System.Threading.ThreadPool"/> has an available thread to give.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:JGeneral.IO.Unity.Embed.EmbedUnity(System.String,System.IntPtr)">
+            <summary>
+            Embeds Unity inside WPF or other similar context.
+            Generates the <see cref="F:JGeneral.IO.Unity.Embed.Unity"/> static variable required to run <see cref="M:JGeneral.IO.Unity.Embed.StartUnityEmbedded"/>.
+            </summary>
+            <returns>A pointer to the unity window.</returns>
+        </member>
+        <member name="M:JGeneral.IO.Unity.Embed.StartUnityEmbedded">
+            <summary>
+            Starts the previously embedded <see cref="F:JGeneral.IO.Unity.Embed.Unity"/> inside the window specified in <see cref="M:JGeneral.IO.Unity.Embed.EmbedUnity(System.String,System.IntPtr)"/>.
+            </summary>
+            <returns>Whether the function succeeded or failed (<see cref="T:System.Boolean"/>).</returns>
+            <exception cref="T:System.Exception">UnityProcess cannot be null while starting it.</exception>
+        </member>
+        <member name="T:JGeneral.IO.Updates.AppVersion">
+            <summary>
+            Not subject to change, has to stay stable.
+            </summary>
+        </member>
+        <member name="M:JGeneral.IO.Updates.UpdateClient.IsValid">
+            <returns>Whether the version is valid or not.</returns>
+        </member>
+    </members>
+</doc>
